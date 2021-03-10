@@ -3,6 +3,7 @@ package id.co.bankmandiri.beinductionday4.services;
 import id.co.bankmandiri.beinductionday4.models.entities.Employees;
 import id.co.bankmandiri.beinductionday4.models.response.EmployeeJoinDepartmentResponse;
 import id.co.bankmandiri.beinductionday4.models.response.EmployeeResponse;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,4 +29,10 @@ public interface EmployeeService{
     List<Employees> findBySalaryLessThanAndDepartmentIdWithNativeQuery(Integer salary, Integer departmentId);
 
     List<Employees> findAllJoinDepartment();
+
+    List<EmployeeJoinDepartmentResponse> findAllDepartmentWithNoEmployee();
+
+    List<EmployeeJoinDepartmentResponse> findAllEmployeeWithNoDepartment();
+
+    List<EmployeeJoinDepartmentResponse> findAllEmployeeAndDepartmentThatDontMatchEachOther();
 }

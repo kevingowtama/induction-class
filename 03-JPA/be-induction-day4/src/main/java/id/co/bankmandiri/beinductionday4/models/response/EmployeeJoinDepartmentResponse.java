@@ -11,11 +11,9 @@ import java.time.LocalDateTime;
 @Builder
 public class EmployeeJoinDepartmentResponse {
 
-    private Integer employeeId;
-
     private String firstName;
 
     private String lastName;
 
-    private Integer departmentId;
+    private String departmentName;
 }

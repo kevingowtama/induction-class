@@ -30,7 +30,25 @@ public interface EmployeeRepository extends JpaRepository<Employees, Integer> {
     @Query(nativeQuery = true, value = "SELECT * FROM EMPLOYEES e WHERE e.salary < :salary AND e.department_id = :departmentId")
     List<Employees> findBySalaryLessThanAndDepartmentIdWithNativeQuery(Integer salary, Integer departmentId);
 
+
+    // JOIN QUERY
+
     @Query(nativeQuery = true, value = "SELECT * FROM EMPLOYEES e JOIN DEPARTMENTS d ON e.DEPARTMENT_ID = d.DEPARTMENT_ID")
     List<Employees> findAllJoinDepartment();
+
+    @Query(nativeQuery = true, value = "SELECT e.FIRST_NAME, e.LAST_NAME, d.DEPARTMENT_NAME FROM DEPARTMENTS d " +
+            "RIGHT JOIN EMPLOYEES e ON d.DEPARTMENT_ID = e.DEPARTMENT_ID " +
+            "WHERE e.DEPARTMENT_ID IS NULL")
+    List<EmployeeJoinDepartmentResponse> findAllDepartmentWithNoEmployee();
+
+    @Query(nativeQuery = true, value = "SELECT e.FIRST_NAME, e.LAST_NAME, d.DEPARTMENT_NAME  FROM DEPARTMENTS d " +
+            "LEFT JOIN EMPLOYEES e ON d.DEPARTMENT_ID = e.DEPARTMENT_ID " +
+            "WHERE e.DEPARTMENT_ID IS NULL")
+    List<EmployeeJoinDepartmentResponse> findAllEmployeeWithNoDepartment();
+
+    @Query(nativeQuery = true, value = "SELECT e.FIRST_NAME, e.LAST_NAME, d.DEPARTMENT_NAME  FROM DEPARTMENTS d " +
+            "FULL OUTER JOIN EMPLOYEES e ON d.DEPARTMENT_ID = e.DEPARTMENT_ID " +
+            "WHERE e.DEPARTMENT_ID IS NULL OR WHERE d.DEPARTMENT_ID IS NULL")
+    List<EmployeeJoinDepartmentResponse> findAllEmployeeAndDepartmentThatDontMatchEachOther();
 
 }

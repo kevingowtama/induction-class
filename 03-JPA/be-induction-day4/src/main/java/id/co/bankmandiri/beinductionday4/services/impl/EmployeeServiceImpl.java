@@ -63,6 +63,21 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public List<EmployeeJoinDepartmentResponse> findAllDepartmentWithNoEmployee() {
+        return employeeRepository.findAllDepartmentWithNoEmployee();
+    }
+
+    @Override
+    public List<EmployeeJoinDepartmentResponse> findAllEmployeeWithNoDepartment() {
+        return employeeRepository.findAllEmployeeWithNoDepartment();
+    }
+
+    @Override
+    public List<EmployeeJoinDepartmentResponse> findAllEmployeeAndDepartmentThatDontMatchEachOther() {
+        return employeeRepository.findAllEmployeeAndDepartmentThatDontMatchEachOther();
+    }
+
+    @Override
     public EmployeeResponse save(Employees employees) {
         return null;
     }
